@@ -350,7 +350,7 @@
     <div class="card" id="card">
       <div class="badge">💌 <b>Private Message</b> • made with love</div>
 
-      <h1>Will you be my Valentine? 💘</h1>
+      <h1>मंचकिना, attraction तो instant hai 💘</h1>
       <p class="sub" id="message">
         I couldn’t send a boring text… so I made you a tiny page instead 🥹
       </p>
@@ -378,7 +378,7 @@
         <button class="smallBtn" id="sweetMsg">Make it sweeter</button>
       </div>
 
-      <div class="note">Works best on mobile • tap “No” if you dare 😌</div>
+      <div class="note">तेरे नाम से शुरू, तेरे नाम पे ही खत्म मेरी हर कहानी। 😌</div>
       <div class="toast" id="toast">Copied!</div>
     </div>
   </div>
@@ -478,10 +478,10 @@
     document.getElementById('sweetMsg').addEventListener('click', ()=>{
       const m = document.getElementById('message');
       const lines = [
-        "I couldn’t send a boring text… so I made you a tiny page instead 🥹",
-        "If I’m your Valentine, I promise: snacks, laughs, and zero awkward moments 😌",
-        "You + me + something yummy = perfect Valentine’s plan 💘",
-        "No pressure… but the correct answer is obviously YES 💚"
+        "मोहब्बत तो small word है… तुम्हारे लिए तो full movie बनानी पड़ेगी। 🥹",
+        "तुम मिली तो लगा… भगवान ने personally casting की है। 😌",
+        "मोहब्बत का नाम आज भी मोहब्बत है, ये ना कभी बदली है… और ना कभी बदलेगी। 💘",
+        "ज़िंदगी में कुछ रिश्ते ऐसे होते हैं, जो बनते नहीं… बस हो जाते हैं। 💚"
       ];
       m.textContent = lines[Math.floor(Math.random()*lines.length)];
       showToast('Aww upgraded 🥰');
@@ -501,7 +501,7 @@
     // Native share
     document.getElementById('shareNative').addEventListener('click', async ()=>{
       const shareData = {
-        title: 'Will you be my Valentine? 💘',
+        title: 'मंचकिना, attraction तो instant hai 💘',
         text: `${toEl.textContent}, open this 💌`,
         url: location.href
       };
