@@ -117,6 +117,8 @@
   margin:14px 0;
   border-radius:18px;
   overflow:hidden;
+  aspect-ratio: 3 / 4;  /* matches your new image */
+  max-height: 520px;
   position:relative;
 }
 
@@ -268,7 +270,9 @@
 
 .valentine-photo{
   width:100%;
-  height:auto;   /* ⭐ this shows entire image */
+  height:100%;
+  object-fit: cover;     
+  object-position: 50% 65%;  /* tweak if faces too high/low */
   display:block;
 }
 
