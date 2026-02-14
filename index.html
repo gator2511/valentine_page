@@ -117,7 +117,8 @@
   margin:14px 0;
   border-radius:18px;
   overflow:hidden;
-  height:340px;   /* adjust this */
+  height:340px;       /* adjust */
+  position:relative;  /* needed for overlay */
 }
 
     .photo .emoji{font-size:34px}
@@ -297,6 +298,25 @@
   font-size:22px;
   color:#b03060;
 }
+
+    .photo-leak .leak{
+  position:absolute;
+  inset:-30%;
+  pointer-events:none;
+  mix-blend-mode: screen;
+  opacity:0.28;
+  filter: blur(18px);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,180,200,.75), transparent 55%),
+    radial-gradient(circle at 70% 55%, rgba(255,240,170,.65), transparent 58%),
+    radial-gradient(circle at 50% 80%, rgba(255,140,190,.55), transparent 60%);
+  animation: leakMove 10s ease-in-out infinite alternate;
+}
+
+@keyframes leakMove{
+  0%   { transform: translate(-6%, -4%) rotate(-8deg) scale(1.05); }
+  100% { transform: translate(6%, 4%) rotate(10deg) scale(1.12); }
+}
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
@@ -336,10 +356,10 @@
         <div class="pill">To: <b id="toName">[Munchkina]</b></div>
       </div>
 
-      <div class="photo">
-        <img src="./WUBMV.jpeg" alt="Us together" class="valentine-photo">
-        <p class="love-note">Meri Pyaari Patootoopa ❤️</p>
-      </div>
+      <div class="photo photo-leak">
+  <img src="./WUBMV.jpeg" alt="Us together" class="valentine-photo">
+  <span class="leak"></span>
+</div>
 
       <div class="stage">
         <div class="btnRow" id="btnRow">
