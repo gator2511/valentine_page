@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My Valentine 💘</title>
+  <meta name="description" content="A sweet little Valentine page." />
+  <style>
+    :root{
+      --bg1:#ff4d6d;
+      --bg2:#ffd6e0;
+      --card:#ffffffcc;
+      --text:#222;
+      --muted:#444;
+      --yes:#17a358;
+      --no:#ff3b5c;
+      --shadow: 0 18px 60px rgba(0,0,0,.18);
+      --radius: 26px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% 20%, rgba(255,255,255,.35), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(255,255,255,.35), transparent 65%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow:hidden;
+    }
+
+    /* Floating hearts */
+    .heart{
+      position:absolute;
+      width:18px;height:18px;
+      transform: rotate(45deg);
+      opacity:.18;
+      animation: floatUp linear infinite;
+      filter: blur(.2px);
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:18px;height:18px;
+      background:#fff;
+      border-radius:50%;
+      left:0;top:0;
+    }
+    .heart::after{left:-9px}
+    .heart::before{top:-9px}
+    @keyframes floatUp{
+      from{transform:translateY(20vh) rotate(45deg) scale(.9)}
+      to{transform:translateY(-120vh) rotate(45deg) scale(1.2)}
+    }
+
+    .wrap{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width:min(560px, 100%);
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.55);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 22px 20px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      background: rgba(255,255,255,.75);
+      border:1px solid rgba(0,0,0,.06);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+    }
+    .badge b{font-weight:800}
+
+    h1{
+      margin:16px 0 8px;
+      font-size: clamp(28px, 4.2vw, 42px);
+      line-height:1.05;
+      letter-spacing:-0.6px;
+    }
+    .sub{
+      margin:0 0 16px;
+      font-size: 15px;
+      color:var(--muted);
+      opacity:.9;
+      line-height:1.55;
+    }
+
+    .names{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 10px 0 8px;
+      font-size:14px;
+    }
+    .pill{
+      padding:8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.75);
+      border:1px solid rgba(0,0,0,.06);
+    }
+
+    .photo{
+      margin: 14px 0 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(0,0,0,.06);
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-align:center;
+    }
+    .photo .emoji{font-size:34px}
+    .photo .text{font-size:14px; color:var(--muted); line-height:1.4}
+
+    .stage{
+      margin: 14px 0 6px;
+      position:relative;
+      height: 90px;
+    }
+    .btnRow{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+      height:90px;
+    }
+
+    button{
+      border:0;
+      border-radius: 999px;
+      padding: 14px 18px;
+      font-weight:800;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+      box-shadow: 0 12px 26px rgba(0,0,0,.15);
+      user-select:none;
+      touch-action: manipulation;
+      min-width: 138px;
+    }
+    button:active{transform: scale(.98)}
+    .yes{
+      background: linear-gradient(180deg, #33d17a, var(--yes));
+      color:white;
+    }
+    .no{
+      background: linear-gradient(180deg, #ff6b81, var(--no));
+      color:white;
+      position:absolute;
+      left:50%;
+      transform: translateX(74px);
+    }
+
+    .helper{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .smallBtn{
+      background: rgba(255,255,255,.85);
+      color:#111;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:none;
+      font-weight:700;
+      min-width:auto;
+      padding:10px 12px;
+      font-size:13px;
+    }
+    .smallBtn:hover{filter:brightness(.98)}
+
+    .note{
+      margin-top:10px;
+      text-align:center;
+      font-size:12px;
+      color:rgba(0,0,0,.55);
+    }
+
+    .toast{
+      position:absolute;
+      left:50%;
+      bottom:16px;
+      transform:translateX(-50%);
+      background: rgba(0,0,0,.72);
+      color:white;
+      padding:10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity:0;
+      pointer-events:none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .toast.show{
+      opacity:1;
+      transform: translateX(-50%) translateY(-6px);
+    }
+
+    /* Modal */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      place-items:center;
+      padding:24px;
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(6px);
+      z-index:50;
+    }
+    .modal.show{display:grid}
+    .modalBox{
+      width:min(520px, 100%);
+      background:white;
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .modalBox h2{
+      margin:6px 0 8px;
+      font-size: clamp(24px, 3.8vw, 34px);
+      letter-spacing:-0.4px;
+    }
+    .modalBox p{margin:0 0 14px; opacity:.85}
+    .bigEmoji{font-size:56px; margin: 8px 0 8px}
+    .close{
+      position:absolute;
+      top:10px; right:10px;
+      width:42px; height:42px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.08);
+      background:#fff;
+      box-shadow:none;
+      min-width:auto;
+      padding:0;
+      font-size:18px;
+      cursor:pointer;
+    }
+
+    canvas#confetti{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:60;
+    }
+
+    @media (max-width:420px){
+      .no{transform: translateX(58px);}
+      button{min-width: 126px}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+
+  <script>
+    // Background hearts
+    (function makeHearts(){
+      const n = 18;
+      for(let i=0;i<n;i++){
+        const h = document.createElement('div');
+        h.className='heart';
+        const size = 10 + Math.random()*22;
+        h.style.width = h.style.height = size+'px';
+        h.style.left = (Math.random()*100)+'vw';
+        h.style.top = (Math.random()*100)+'vh';
+        h.style.animationDuration = (7 + Math.random()*9) + 's';
+        h.style.animationDelay = (-Math.random()*12) + 's';
+        h.style.opacity = (0.10 + Math.random()*0.18).toFixed(2);
+        document.body.appendChild(h);
+      }
+    })();
+  </script>
+
+  <div class="wrap">
+    <div class="card" id="card">
+      <div class="badge">💌 <b>Private Message</b> • made with love</div>
+
+      <h1>Will you be my Valentine? 💘</h1>
+      <p class="sub" id="message">
+        I couldn’t send a boring text… so I made you a tiny page instead 🥹
+      </p>
+
+      <div class="names">
+        <div class="pill">From: <b id="fromName">[Munchkina's Munch]</b></div>
+        <div class="pill">To: <b id="toName">[Munchkina]</b></div>
+      </div>
+
+      <div class="photo">
+        <div class="emoji">🧸🌹</div>
+        <div class="text">
+          Tip: Want it even cuter? Replace this box with a photo of you two later.
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="btnRow" id="btnRow">
+          <button class="yes" id="yesBtn">Yes 💚</button>
+          <button class="no" id="noBtn">No 🙃</button>
+        </div>
+      </div>
+
+      <div class="helper">
+        <button class="smallBtn" id="copyLink">Copy link</button>
+        <button class="smallBtn" id="editNames">Edit names</button>
+        <button class="smallBtn" id="sweetMsg">Make it sweeter</button>
+      </div>
+
+      <div class="note">Works best on mobile • tap “No” if you dare 😌</div>
+      <div class="toast" id="toast">Copied!</div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modalBox">
+      <button class="close" id="closeModal">✕</button>
+      <div class="bigEmoji">🥰</div>
+      <h2>Yesss! It’s a date 💞</h2>
+      <p id="winText">Screenshot this and send it back to <b id="winFrom">[Munchkina's Munch]</b>.</p>
+      <div class="helper" style="margin-top:10px">
+        <button class="yes" id="copyProof">Copy “YES” message</button>
+        <button class="smallBtn" id="shareNative">Share</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Personalize here (or use "Edit names" button)
+    const state = {
+      from: "Munchkina's Munch",
+      to: "Munchkina"
+    };
+
+    const fromEl = document.getElementById('fromName');
+    const toEl = document.getElementById('toName');
+    const winFrom = document.getElementById('winFrom');
+    fromEl.textContent = state.from;
+    toEl.textContent = state.to;
+    winFrom.textContent = state.from;
+
+    // Gentle “No” dodge
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const btnRow = document.getElementById('btnRow');
+    let dodges = 0;
+
+    function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
+
+    function dodge(){
+      dodges++;
+      const rect = btnRow.getBoundingClientRect();
+      const padding = 10;
+      const x = Math.random() * (rect.width - noBtn.offsetWidth - padding*2) + padding;
+      const y = Math.random() * (rect.height - noBtn.offsetHeight - padding*2) + padding;
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+      noBtn.style.transform = 'translateX(0)';
+
+      // subtle bias toward “Yes”
+      const yesScale = clamp(1 + dodges*0.05, 1, 1.45);
+      yesBtn.style.transform = `scale(${yesScale})`;
+    }
+    noBtn.addEventListener('mouseenter', dodge);
+    noBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); dodge(); }, {passive:false});
+
+    // Modal + confetti
+    const modal = document.getElementById('modal');
+    document.getElementById('closeModal').addEventListener('click', ()=> modal.classList.remove('show'));
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.remove('show'); });
+
+    yesBtn.addEventListener('click', ()=>{
+      popConfetti();
+      modal.classList.add('show');
+    });
+
+    // Toast
+    const toast = document.getElementById('toast');
+    function showToast(text){
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 1200);
+    }
+
+    // Copy link
+    document.getElementById('copyLink').addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(location.href);
+        showToast('Link copied 💌');
+      }catch{
+        showToast('Copy failed — copy from address bar');
+      }
+    });
+
+    // Edit names
+    document.getElementById('editNames').addEventListener('click', ()=>{
+      const nf = prompt("Munchkina's Munch (From):", fromEl.textContent);
+      const nt = prompt("Munchkina (To):", toEl.textContent);
+      if(nf && nf.trim()) fromEl.textContent = nf.trim();
+      if(nt && nt.trim()) toEl.textContent = nt.trim();
+      winFrom.textContent = fromEl.textContent;
+      showToast('Updated ✅');
+    });
+
+    // Make message sweeter
+    document.getElementById('sweetMsg').addEventListener('click', ()=>{
+      const m = document.getElementById('message');
+      const lines = [
+        "I couldn’t send a boring text… so I made you a tiny page instead 🥹",
+        "If I’m your Valentine, I promise: snacks, laughs, and zero awkward moments 😌",
+        "You + me + something yummy = perfect Valentine’s plan 💘",
+        "No pressure… but the correct answer is obviously YES 💚"
+      ];
+      m.textContent = lines[Math.floor(Math.random()*lines.length)];
+      showToast('Aww upgraded 🥰');
+    });
+
+    // Proof text
+    document.getElementById('copyProof').addEventListener('click', async ()=>{
+      const proof = `YES 💚 I’ll be your Valentine!\n\nFrom: ${fromEl.textContent}\nTo: ${toEl.textContent}\n\nLink: ${location.href}`;
+      try{
+        await navigator.clipboard.writeText(proof);
+        showToast('Copied 😄');
+      }catch{
+        showToast('Couldn’t copy');
+      }
+    });
+
+    // Native share
+    document.getElementById('shareNative').addEventListener('click', async ()=>{
+      const shareData = {
+        title: 'Will you be my Valentine? 💘',
+        text: `${toEl.textContent}, open this 💌`,
+        url: location.href
+      };
+      if(navigator.share){
+        try{ await navigator.share(shareData); } catch(e){}
+      } else showToast('Use Copy link');
+    });
+
+    // Confetti
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+    function resize(){
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function popConfetti(){
+      const pieces = Array.from({length: 140}, ()=>({
+        x: W/2 + (Math.random()*140 - 70),
+        y: H/2 + (Math.random()*50 - 25),
+        vx: (Math.random()*8 - 4),
+        vy: (Math.random()*-10 - 5),
+        g: 0.22 + Math.random()*0.18,
+        r: 3 + Math.random()*4,
+        a: 1,
+        rot: Math.random()*Math.PI,
+        vr: (Math.random()*0.2 - 0.1)
+      }));
+
+      const start = performance.now();
+      function frame(t){
+        const dt = (t - start) / 16.7;
+        ctx.clearRect(0,0,W,H);
+
+        pieces.forEach(p=>{
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.vy += p.g * dt;
+          p.rot += p.vr * dt;
+          p.a -= 0.010 * dt;
+          if(p.a <= 0) return;
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0,p.a);
+          ctx.translate(p.x,p.y);
+          ctx.rotate(p.rot);
+          const hue = (p.x + p.y) % 360;
+          ctx.fillStyle = `hsl(${hue} 90% 60%)`;
+          ctx.fillRect(-p.r, -p.r, p.r*2, p.r*2);
+          ctx.restore();
+        });
+
+        if (pieces.some(p=>p.a>0)) requestAnimationFrame(frame);
+        else ctx.clearRect(0,0,W,H);
+      }
+      requestAnimationFrame(frame);
+    }
+  </script>
+</body>
+</html>
